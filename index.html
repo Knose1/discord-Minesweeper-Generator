@@ -5,13 +5,16 @@
     </head>
     <body>
         <pre id="result"></pre><br>
+        <div id="warning"></div><br>
         <br>
+        
         <button onclick="generate()">Generate</button><br>
         
         <h2>Parameters</h2><br>
         <p>Note: Leave the input blanc to have a random parameter</p><br>
         <input class="bombSpawnRate" type="number" placeolder="Bomb spawn rate" min="0" max="100"> Number of bomb spawning in % <br>
         <input class="lineCount" type="number" placeolder="Line count" min="3" max="12"> Number of line <br>
+        <input class="startWhite" type="checkbox"> Remove the starter white square<br>
         
         <script>
             const MINE_HEAD = "**`💣      MINESWEEPER     💣`**\n";
@@ -19,27 +22,33 @@
             
             function generate() {
                 
+                //Get inputs
                 var lInputBomb = document.querySelector("input.bombSpawnRate");
                 var lInputLine = document.querySelector("input.lineCount");
                 
-                
+                //Parametters
                 var lBombSpawnCount = lInputBomb.value / 100 || Math.random();
                 var lLineCount = lInputLine.value || 0;
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
                 if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, 12);
                 
-                var lMap = new Map(lBombSpawnCount, lLineCount);
+                //Generate Mine Sweeper's map
+                var lMap = new Map(lBombSpawnCount, lLineCount, document.querySelector("input.startWhite").checked);
                 
+                //Set up output
                 var lBombString = String(lMap.numBomb);
                 if (lBombString.length == 1) lBombString = " " + lBombString;
                 
                 var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT.replace("##", lBombString);
                 
+                //Output
                 console.log(lMap);
-                
-                
                 document.getElementById("result").innerHTML = lGrild;
+                
+                var lWarningElement = document.getElementById("warning");
+                lWarningElement.innerHTML = "";
+                if (lGrild.length >= 2000)  lWarningElement.innerHTML = "<h2> WARNING: max character limit has been reached</h2>";
                 
                 lInputBomb.value = Math.clamp(lInputBomb.value, 0, 100);
                 lInputLine.value = Math.clamp(lInputLine.value, 3, 12);
