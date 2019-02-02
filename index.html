@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <script>    
+            const MINE_HEAD = "**`💣      MINESWEEPER     💣`**";
+            const MINE_FOOT = "`⚫                       ⚫`";
+            
+            const TILES = ["||:white_large_square:||","||:one:||","||:two:||","||:three:||","||:four:||","||:five:||","||:six:||","||:seven:||","||:eight:||","||:nine:||"];
+            const BOMB = "||:bomb:||";
+            
+            const BLOCK_BY_LINE = 8;
+            
+            const MIN_NUM_LINE = 3;
+            const MAX_NUM_LINE = 12;
+            
+            const BOMB_SPAWN_COUNT = 8 / 100;
+            
+            class Map {
+                constructor() {
+                    this.height = Math.floor(Math.random() * (MAX_NUM_LINE - MIN_NUM_LINE + 1)) + MIN_NUM_LINE;
+                    
+                    var lArray = [];
+                    var lMaxI = this.height - 1;
+                    for (var lI = 0; lI < lMaxI; lI++) {
+                        lArray[lI] = [];
+                    }
+                    
+                    this.array = lArray;
+                    
+                    this.width = BLOCK_BY_LINE;
+                    this.size = BLOCK_BY_LINE * this.height;
+                    
+                    this.numBomb = Math.round(BOMB_SPAWN_COUNT * this.size);
+                    
+                    if (this.numBomb > this.size) {
+                        this.numBomb = this.size;
+                    }
+                    
+                    var lBombs = [];
+                    
+                    //TODO : Bomb generator
+                    for (lI = this.numBomb; lI > 0; lI--) {
+                        let lPlace = {'x':Math.floor(Math.random() * this.width), 'y':Math.floor(Math.random() * this.height)}; 
+                        
+                        //String is used to able the methode lBombs.indexOf(lPlace)
+                        var lLoopCount = 0;
+                        while (lBombs.indexOf(JSON.stringify(lPlace)) != -1) {
+                            lPlace.x++
+                            if (lPlace.x == this.width) {
+                                lPlace.x = 0;
+                                lPlace.y++;
+                            }
+                            if (lPlace.y == this.height) {
+                                lPlace.y = 0;
+                            }
+                            if (lLoopCount == this.size) {
+                                console.warn("Too mutch bomb");
+                                break;
+                            }
+                        }
+                        if (lLoopCount == this.size) {
+                            break;
+                        }
+                        lBombs.push(JSON.stringify(lPlace));
+                        
+                    }
+                    
+                    this.bombs = lBombs;
+                    //TODO : Map Generator
+                }
+                
+                toString() {
+                    //TODO : Implementation
+                }
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <div id="result"></div>
+        <script>
+            function generate() {
+                var lMap = new Map();
+                //var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT;
+                
+                console.log(lMap);
+                
+                //document.getElementById("result").innerHaml = lGrild;
+            }
+            generate();
+        </script>
+    </body>
+</html>
