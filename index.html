@@ -15,7 +15,7 @@
         
         <script>
             const MINE_HEAD = "**`💣      MINESWEEPER     💣`**\n";
-            const MINE_FOOT = "`⚫                       ⚫`";
+            const MINE_FOOT = "`⚫     Bomb Count: ##    ⚫`";
             
             function generate() {
                 
@@ -30,7 +30,11 @@
                 if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, 12);
                 
                 var lMap = new Map(lBombSpawnCount, lLineCount);
-                var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT + `\n Bomb count : ${lMap.numBomb}`;
+                
+                var lBombString = String(lMap.numBomb);
+                if (lBombString.length == 1) lBombString = " " + lBombString;
+                
+                var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT.replace("##", lBombString)`;
                 
                 console.log(lMap);
                 
