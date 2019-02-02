@@ -1,7 +1,7 @@
 <html>
     <head>
         <script>    
-            const MINE_HEAD = "**`💣      MINESWEEPER     💣`**";
+            const MINE_HEAD = "**`💣      MINESWEEPER     💣`**\n";
             const MINE_FOOT = "`⚫                       ⚫`";
             
             const TILES = ["||:white_large_square:||","||:one:||","||:two:||","||:three:||","||:four:||","||:five:||","||:six:||","||:seven:||","||:eight:||","||:nine:||"];
@@ -96,7 +96,7 @@
                                 }
                             }
                             lTile = TILES[lNumBomb];
-                            if (!lIsWhiteTileSelected == lNumBomb == 0) {
+                            if (!lIsWhiteTileSelected && lNumBomb == 0) {
                                 lTile = lTile.slice(2,lTile.length - 2);
                                 lIsWhiteTileSelected = true;
                             }
