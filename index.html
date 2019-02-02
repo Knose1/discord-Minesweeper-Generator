@@ -12,7 +12,7 @@
             const MIN_NUM_LINE = 3;
             const MAX_NUM_LINE = 12;
             
-            const BOMB_SPAWN_COUNT = 8 / 100;
+            var bombSpawnCount = 8 / 100;
             
             class Map {
                 constructor() {
@@ -30,7 +30,7 @@
                     this.width = BLOCK_BY_LINE;
                     this.size = BLOCK_BY_LINE * this.height;
                     
-                    this.numBomb = Math.round(BOMB_SPAWN_COUNT * this.size);
+                    this.numBomb = Math.round(bombSpawnCount * this.size);
                     
                     var lIsWhiteTileSelected = false;
                     
@@ -121,13 +121,17 @@
         </script>
     </head>
     <body>
-        <pre id="result"></pre>
+        <pre id="result"></pre><br>
+        <br>
+        <button onclick="generate()">Generate</button>
         <script>
             function generate() {
                 var lMap = new Map();
-                var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT;
+                var lGrild = MINE_HEAD + lMap.toString() + MINE_FOOT + `\n Bomb count : ${lMap.numBomb}`;
                 
                 console.log(lMap);
+                
+                bombSpawnCount = Math.random();
                 
                 document.getElementById("result").innerHTML = lGrild;
             }
