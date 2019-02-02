@@ -7,7 +7,7 @@ const MIN_NUM_LINE = 3;
 const MAX_NUM_LINE = 12;
 
 class Map {
-    constructor(pLineCount = 0) {
+    constructor(pBombSpawnCount = 8 / 100, pLineCount = 0) {
         this.height = pLineCount || Math.floor(Math.random() * (MAX_NUM_LINE - MIN_NUM_LINE + 1)) + MIN_NUM_LINE;
 
         var lArray = [];
@@ -22,7 +22,7 @@ class Map {
         this.width = BLOCK_BY_LINE;
         this.size = BLOCK_BY_LINE * this.height;
 
-        this.numBomb = Math.round(bombSpawnCount * this.size);
+        this.numBomb = Math.round(pBombSpawnCount * this.size);
 
         var lIsWhiteTileSelected = false;
 
