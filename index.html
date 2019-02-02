@@ -112,6 +112,8 @@
                     for (var lI = 0; lI < lLength; lI++) {
                         lToReturn += lArray[lI].join("") + "\n";
                     }
+                    
+                    return lToReturn;
                 }
             }
             
@@ -127,7 +129,7 @@
                 
                 console.log(lMap);
                 
-                document.getElementById("result").innerHaml = lGrild;
+                document.getElementById("result").innerHTML = lGrild;
             }
             generate();
         </script>
