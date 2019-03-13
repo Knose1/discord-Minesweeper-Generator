@@ -31,7 +31,7 @@
                 var lLineCount = lInputLine.value || 0;
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
-                if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, 12);
+                if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, Infinity);
                 
                 //Generate Mine Sweeper's map
                 var lMap = new Map(lBombSpawnCount, lLineCount, document.querySelector("input.startWhite").checked);
