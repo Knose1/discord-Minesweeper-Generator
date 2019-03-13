@@ -50,7 +50,7 @@
                 lWarningElement.innerHTML = "";
                 if (lGrild.length >= 2000)  lWarningElement.innerHTML = "<h2> WARNING: max character limit has been reached</h2>";
                 
-                lInputBomb.value = Math.clamp(lInputBomb.value, 0, 100);
+                if (lInputBomb.value !== '') lInputBomb.value = Math.clamp(lInputBomb.value, 0, 100);
                 lInputLine.value = Math.clamp(lInputLine.value, 3, 12);
             }
             generate();
