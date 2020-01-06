@@ -7,7 +7,7 @@ const MIN_NUM_LINE = 3;
 const MAX_NUM_LINE = 12;
 
 class Map {
-    constructor(pBombSpawnCount = 8 / 100, pLineCount = 0, pAllowFirstTile = false) {
+    constructor(pBombSpawnCount = 8 / 100, pLineCount = 1, pBlockByLine = BLOCK_BY_LINE, pFirstTileCount = 1) {
         this.height = pLineCount || Math.floor(Math.random() * (MAX_NUM_LINE - MIN_NUM_LINE + 1)) + MIN_NUM_LINE;
 
         var lArray = [];
@@ -19,12 +19,10 @@ class Map {
         this.array = lArray;
         //warning : coordinate system is using this.array[Y][X]
 
-        this.width = BLOCK_BY_LINE;
-        this.size = BLOCK_BY_LINE * this.height;
+        this.width = pBlockByLine;
+        this.size = pBlockByLine * this.height;
 
         this.numBomb = Math.round(pBombSpawnCount * this.size);
-
-        var lIsWhiteTileSelected = pAllowFirstTile;
 
         if (this.numBomb > this.size) {
             this.numBomb = this.size;
@@ -65,6 +63,8 @@ class Map {
         let lNumBomb;
         let lTile;
         let lNewY;
+        let lWhiteTiles = [];
+        let lTiles = [];
         for (let lY = this.height - 1; lY >= 0; lY--) {
             for (let lX = this.width - 1; lX >= 0; lX--) {
                 lNumBomb = 0;
@@ -87,14 +87,46 @@ class Map {
                         lNumBomb += (lArray[lNewY][lX + lRelativeX] == BOMB);
                     }
                 }
+                
                 lTile = TILES[lNumBomb];
-                if (!lIsWhiteTileSelected && lNumBomb == 0) {
-                    lTile = lTile.slice(2,lTile.length - 2);
-                    lIsWhiteTileSelected = true;
+                if (pFirstTileCount > 0)
+                {
+                    if (lNumBomb == 0)
+                    {
+                        lWhiteTiles.push({x:lX, y:lY, name:lTile});
+                    }
+                    else
+                    {
+                        lTiles.push({x:lX, y:lY, name:lTile});
+                    }
                 }
+                    
                 lArray[lY][lX] = lTile;
             }
         }
+        
+        for (let i = 0; i >= pFirstTileCount; i++) 
+        {
+            let randomTile; 
+            if (lWhiteTiles.length == 0) 
+            {
+                if (lTiles.length == 0)
+                {
+                    break;
+                }
+                
+                randomTile = lTiles.pop(Math.floor(Math.random() * lTiles.length));
+            }
+            else randomTile = lWhiteTiles.pop(Math.floor(Math.random() * lWhiteTiles.length));
+            
+            lArray[randomTile.y][randomTile.x] = this.removeSpoilerBraket(randomTile.name);
+        }
+        
+    }
+    
+    removeSpoilerBraket(pString)
+    {
+        return pString.slice(2,pString.length - 2);
     }
 
     toString() {
