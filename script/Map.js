@@ -137,7 +137,7 @@ class Map {
     toString() {
         var lToReturn = "";
         var lLength = this.height;
-        var lArray = this.array
+        var lArray = this.array;
         for (var lI = 0; lI < lLength; lI++) {
             lToReturn += lArray[lI].join("") + "\n";
         }
@@ -149,7 +149,7 @@ class Map {
         var lLength = this.height;
         for (let lY = 0; lY < this.height; lY++) {
             for (let lX = 0; lX < this.width; lX++) {
-                let lString = lArray[lY][lX];
+                let lString = this.array[lY][lX];
                 
                 if (lString == BOMB) {
                     lToReturn += BOMB_EMOJI;
