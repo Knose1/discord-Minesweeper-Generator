@@ -155,7 +155,7 @@ class Map {
                     lToReturn += BOMB_EMOJI;
                 }
                 else {
-                    let lIndex = TILES.indexOf("||"+removeSpoilerBraket(lString)+"||");
+                    let lIndex = TILES.indexOf("||"+this.removeSpoilerBraket(lString)+"||");
                     lToReturn += TILES_EMOJI[lIndex];
                 }
             }
