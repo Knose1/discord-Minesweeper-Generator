@@ -39,6 +39,8 @@
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
                 if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, Infinity);
+                if (lInputRow) lInputRow = Math.clamp(lInputRow, 3, Infinity);
+                if (lInputStartWhite) lInputStartWhite = Math.clamp(lInputStartWhite, 0, Infinity);
                 
                 //pBombSpawnCount, pLineCount, pBlockByLine, pFirstTileCount
                 //Generate Mine Sweeper's map
