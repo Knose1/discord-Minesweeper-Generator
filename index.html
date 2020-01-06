@@ -34,7 +34,7 @@
                 //Parametters
                 var lBombSpawnCount = lInputBomb.value / 100 || Math.random();
                 var lLineCount = lInputLine.value || 1;
-                var lrawCount = lInputRow.value || 1;
+                var lRowCount = lInputRow.value || 1;
                 var lStartWhite = lInputStartWhite.value || 0;
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
@@ -44,7 +44,7 @@
                 
                 //pBombSpawnCount, pLineCount, pBlockByLine, pFirstTileCount
                 //Generate Mine Sweeper's map
-                var lMap = new Map(lBombSpawnCount, lLineCount, lInputRow, lInputStartWhite);
+                var lMap = new Map(lBombSpawnCount, lLineCount, lRowCount, lStartWhite);
                 
                 //Set up output
                 var lBombString = String(lMap.numBomb);
