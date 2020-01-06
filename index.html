@@ -5,6 +5,8 @@
     </head>
     <body>
         <pre id="result"></pre><br>
+        <hr/>
+        <pre id="emojiResult"></pre><br>
         <div id="warning"></div><br>
         <br>
         
@@ -14,7 +16,8 @@
         <p>Note: Leave the input empty to have a random parameter</p><br>
         <input class="bombSpawnRate" type="number" placeolder="Bomb spawn rate" min="0" max="100"> Number of bomb spawning in % <br>
         <input class="lineCount" type="number" placeolder="Line count" min="3" max="12"> Number of line <br>
-        <input class="startWhite" type="checkbox"> Remove the starter white square<br>
+        <input class="rowCount" type="number" value="8" placeolder="Row count" min="3" max="12"> Number of row<br>
+        <input class="startWhite" type="number" value="1" placeolder="Row count" min="0" max="144"> Number of starter white square(s)<br>
         
         <script>
             const MINE_HEAD = "**`💣      MINESWEEPER     💣`**\n";
@@ -23,18 +26,23 @@
             function generate() {
                 
                 //Get inputs
-                var lInputBomb = document.querySelector("input.bombSpawnRate");
-                var lInputLine = document.querySelector("input.lineCount");
+                var lInputBomb          = document.querySelector("input.bombSpawnRate");
+                var lInputLine          = document.querySelector("input.lineCount");
+                var lInputRow           = document.querySelector("input.rowCount");
+                var lInputStartWhite    = document.querySelector("input.startWhite");
                 
                 //Parametters
                 var lBombSpawnCount = lInputBomb.value / 100 || Math.random();
-                var lLineCount = lInputLine.value || 0;
+                var lLineCount = lInputLine.value || 1;
+                var lrawCount = lInputRow.value || 1;
+                var lStartWhite = lInputStartWhite.value || 0;
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
                 if (lLineCount) lLineCount = Math.clamp(lLineCount, 3, Infinity);
                 
+                //pBombSpawnCount, pLineCount, pBlockByLine, pFirstTileCount
                 //Generate Mine Sweeper's map
-                var lMap = new Map(lBombSpawnCount, lLineCount, document.querySelector("input.startWhite").checked);
+                var lMap = new Map(lBombSpawnCount, lLineCount, lInputRow, lInputStartWhite);
                 
                 //Set up output
                 var lBombString = String(lMap.numBomb);
@@ -45,6 +53,7 @@
                 //Output
                 console.log(lMap);
                 document.getElementById("result").innerHTML = lGrild;
+                document.getElementById("emojiResult").innerHTML = lMap.toEmojiString();
                 
                 var lWarningElement = document.getElementById("warning");
                 lWarningElement.innerHTML = "";
