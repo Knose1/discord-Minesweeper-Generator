@@ -33,8 +33,8 @@
                 
                 //Parametters
                 var lBombSpawnCount = lInputBomb.value / 100 || Math.random();
-                var lLineCount = lInputLine.value || 1;
-                var lrawCount = lInputRow.value || 1;
+                var lLineCount = lInputLine.value || 0;
+                var lrawCount = lInputRow.value || 0;
                 var lStartWhite = lInputStartWhite.value || 0;
                 
                 lBombSpawnCount = Math.clamp(lBombSpawnCount, 0, 100);
