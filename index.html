@@ -3,6 +3,29 @@
         <script src="script/Map.js"></script>
         <script src="script/Math.js"></script>
         <script src="script/CopyToClipboard.js"></script>
+        <script>
+            class CopyButton 
+            {
+                constructor(pContent, pParentElement)
+                {
+                    if (!pParentElement) pParentElement = document.body;
+                    
+                    this.content = pContent;
+                    this.element = document.createElement("button");
+                    this.element.addEventListener("click", this.clickHandler);
+                    pParrentElement.appendChild(this.element);
+                }
+                dispose()
+                {
+                    this.element.remove();
+                    this.element.removeEventListener("click", this.clickHandler);
+                }
+                clickHandler()
+                {
+                    copyToClipboard(this.content);
+                }
+            }
+        </script>
     </head>
     <body>
         <pre id="result"></pre><br>
