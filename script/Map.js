@@ -1,5 +1,8 @@
-const TILES = ["||:white_large_square:||","||:one:||","||:two:||","||:three:||","||:four:||","||:five:||","||:six:||","||:seven:||","||:eight:||","||:nine:||"];
+const TILES = ["||:white_large_square:||","||:one:||","||:two:||","||:three:||","||:four:||","||:five:||","||:six:||","||:seven:||","||:eight:||"];
+const TILES_EMOJI = ["⬜","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣"];
+
 const BOMB = "||:bomb:||";
+const BOMB_EMOJI = "💣";
 
 const BLOCK_BY_LINE = 8;
 
@@ -126,7 +129,9 @@ class Map {
     
     removeSpoilerBraket(pString)
     {
-        return pString.slice(2,pString.length - 2);
+        if (pString.indexOf("||") === 0 && pString.lastIndexOf("||") === pString.length - 2) return pString.slice(2,pString.length - 2);
+        
+        return pString;
     }
 
     toString() {
@@ -137,6 +142,29 @@ class Map {
             lToReturn += lArray[lI].join("") + "\n";
         }
 
+        return lToReturn;
+    }
+    toEmojiString() {
+        var lToReturn = "";
+        var lLength = this.height;
+        for (let lY = 0; lY < this.height; lY++) {
+            for (let lX = 0; lX < this.width; lX++) {
+                let lString = lArray[lY][lX];
+                
+                if (lString == BOMB) {
+                    lToReturn += BOMB_EMOJI;
+                }
+                else {
+                    let lIndex = TILES.indexOf("||"+removeSpoilerBraket(lString)+"||");
+                    lToReturn += TILES_EMOJI[lIndex];
+                }
+            }
+            lToReturn += "\n";
+        }
+        lToReturn = lToReturn.slice(0, lToReturn.length - 1);
+        
+        
+        
         return lToReturn;
     }
 }
