@@ -141,7 +141,7 @@ class Map {
         var lLength = this.height;
         var lArray = this.array;
         for (var lI = 0; lI < lLength; lI++) {
-            lToReturn += lArray[lI].join("") + "\n";
+            lToReturn += lArray[lI].join("") + Map.LINE_ENDING;
         }
 
         return lToReturn;
@@ -161,7 +161,7 @@ class Map {
                     lToReturn += TILES_EMOJI[lIndex];
                 }
             }
-            lToReturn += "\n";
+            lToReturn += Map.LINE_ENDING;
         }
         lToReturn = lToReturn.slice(0, lToReturn.length - 1);
         
