@@ -14,17 +14,16 @@
                     this.content = pContent;
                     this.element = document.createElement("button");
                     this.element.innerText = pName;
+                    
+                    this.clickHandler = () => {copyToClipboard(this.content);};
                     this.element.addEventListener("click", this.clickHandler);
+                    
                     pParentElement.appendChild(this.element);
                 }
                 dispose()
                 {
                     this.element.remove();
                     this.element.removeEventListener("click", this.clickHandler);
-                }
-                clickHandler()
-                {
-                    copyToClipboard(this.content);
                 }
             }
         </script>
