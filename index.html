@@ -93,13 +93,13 @@
                 copyButtons = [];
                 
                 {
-                    for (let i = 0, maxLoop = 1000; i < lGrild.length && maxLoop > 0; maxLoop--)
+                    let i, maxLoop;
+                    for (i = 0, maxLoop = 1000; i < lGrild.length && maxLoop > 0; maxLoop--)
                     {
                         let lMin = i;
                         let lMax = i + 2000;
                         if (lMax > lGrild.length) lMax = lGrild.length
-                        
-                        i = lMax = lGrild.substr(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
+                        else i = lMax = lGrild.substr(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
                             
                         copyButtons.push(new CopyButton(lGrild.substr(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
                     }
