@@ -110,7 +110,7 @@ class Map {
             }
         }
         
-        for (let i = 0; i >= pFirstTileCount; i++) 
+        for (let i = 0; i < pFirstTileCount; i++) 
         {
             let randomTile; 
             if (lWhiteTiles.length == 0) 
