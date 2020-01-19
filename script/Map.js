@@ -124,6 +124,7 @@ class Map {
             }
             else randomTile = lWhiteTiles.splice(Math.floor(Math.random() * lWhiteTiles.length), 1);
             
+            randomTile = randomTile[0];
             lArray[randomTile.y][randomTile.x] = this.removeSpoilerBraket(randomTile.name);
         }
         
