@@ -9,6 +9,8 @@ const BLOCK_BY_LINE = 8;
 const MIN_NUM_LINE = 3;
 const MAX_NUM_LINE = 12;
 
+const LINE_ENDING = "\n";
+
 class Map {
     constructor(pBombSpawnCount = 8 / 100, pLineCount = 1, pBlockByLine = BLOCK_BY_LINE, pFirstTileCount = 1) {
         this.height = pLineCount || Math.floor(Math.random() * (MAX_NUM_LINE - MIN_NUM_LINE + 1)) + MIN_NUM_LINE;
@@ -168,3 +170,4 @@ class Map {
         return lToReturn;
     }
 }
+Map.LINE_ENDING = LINE_ENDING;
