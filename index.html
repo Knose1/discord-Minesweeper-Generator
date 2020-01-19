@@ -93,7 +93,7 @@
                 copyButtons = [];
                 
                 {
-                    for (let i = 0; i < lGrild.length; 0)
+                    for (let i = 0, maxLoop = 1000; i < lGrild.length && maxLoop > 0; maxLoop--)
                     {
                         let lMin = i;
                         let lMax = i + 2000;
@@ -103,6 +103,8 @@
                             
                         copyButtons.push(new CopyButton(lGrild.substr(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
                     }
+                    
+                    if (maxLoop == 0) console.err("maxLoop reached"); 
                 }
                 //
                 
