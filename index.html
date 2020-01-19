@@ -99,9 +99,9 @@
                         let lMin = i;
                         let lMax = i + 2000;
                         if (lMax > lGrild.length) lMax = lGrild.length
-                        else lMax = lGrild.substr(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
+                        else lMax = lGrild.substring(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
                             
-                        copyButtons.push(new CopyButton(lGrild.substr(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
+                        copyButtons.push(new CopyButton(lGrild.substring(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
                         i = lMax;
                     }
                     
