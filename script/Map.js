@@ -120,9 +120,9 @@ class Map {
                     break;
                 }
                 
-                randomTile = lTiles.pop(Math.floor(Math.random() * lTiles.length));
+                randomTile = lTiles.splice(Math.floor(Math.random() * lTiles.length), 1);
             }
-            else randomTile = lWhiteTiles.pop(Math.floor(Math.random() * lWhiteTiles.length));
+            else randomTile = lWhiteTiles.splice(Math.floor(Math.random() * lWhiteTiles.length), 1);
             
             lArray[randomTile.y][randomTile.x] = this.removeSpoilerBraket(randomTile.name);
         }
