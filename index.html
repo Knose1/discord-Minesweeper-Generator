@@ -94,8 +94,8 @@
                 copyButtons = [];
                 
                 {
-                    let lLoopCount = lGrild.length / 2000;
-                    for (let i = 1; i <= Math.ceil(lLoopCount); i++)
+                    let lLoopCount = Math.ceil(lGrild.length / 2000);
+                    for (let i = 1; i <= lLoopCount; i++)
                     {
                         copyButtons.push(new CopyButton(lGrild.substr((i - 1) * 2000, i < lLoopCount ? i * 2000 : lGrild.length % 2001), document.getElementById("copyButtons"), COPY + " " + i)); 
                     }
