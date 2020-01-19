@@ -93,10 +93,15 @@
                 copyButtons = [];
                 
                 {
-                    let lLoopCount = Math.ceil(lGrild.length / 2000);
-                    for (let i = 1; i <= lLoopCount; i++)
+                    for (let i = 0; i < lGrild.length; 0)
                     {
-                        copyButtons.push(new CopyButton(lGrild.substr((i - 1) * 2000, i < lLoopCount ? i * 2000 : lGrild.length % 2001), document.getElementById("copyButtons"), COPY + " " + i)); 
+                        let lMin = i;
+                        let lMax = i + 2000;
+                        if (lMax > lGrild.length) lMax = lGrild.length
+                        
+                        i = lMax = lGrild.substr(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
+                            
+                        copyButtons.push(new CopyButton(lGrild.substr(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
                     }
                 }
                 //
