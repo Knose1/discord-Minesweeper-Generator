@@ -94,18 +94,18 @@
                 
                 {
                     let i, maxLoop;
-                    for (i = 0, maxLoop = 1000; i < lGrild.length && maxLoop > 0; maxLoop--)
+                    for (i = 0, maxLoop = 0; i < lGrild.length && maxLoop <= 1000; maxLoop++)
                     {
                         let lMin = i;
                         let lMax = i + 2000;
                         if (lMax > lGrild.length) lMax = lGrild.length
                         else lMax = lMin + lGrild.substring(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
                             
-                        copyButtons.push(new CopyButton(lGrild.substring(lMin, lMax), document.getElementById("copyButtons"), COPY + " " + i)); 
+                        copyButtons.push(new CopyButton(lGrild.substring(lMin, lMax), document.getElementById("copyButtons"), COPY + " [" + lMin + " - " + lMax + "]")); 
                         i = lMax;
                     }
                     
-                    if (maxLoop == 0) console.err("maxLoop reached"); 
+                    if (maxLoop == 1000) console.err("maxLoop reached"); 
                 }
                 //
                 
