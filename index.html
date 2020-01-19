@@ -4,14 +4,16 @@
         <script src="script/Math.js"></script>
         <script src="script/CopyToClipboard.js"></script>
         <script>
+            const COPY = "Copy";
             class CopyButton 
             {
-                constructor(pContent, pParentElement)
+                constructor(pContent, pParentElement, pName)
                 {
                     if (!pParentElement) pParentElement = document.body;
                     
                     this.content = pContent;
                     this.element = document.createElement("button");
+                    this.element.innerText = pName;
                     this.element.addEventListener("click", this.clickHandler);
                     pParrentElement.appendChild(this.element);
                 }
@@ -48,6 +50,8 @@
             const MINE_HEAD = "**`💣      MINESWEEPER     💣`**\n";
             const MINE_FOOT = "`⚫     Bomb Count: ##    ⚫`";
             
+            var copyButtons = [];
+            
             function generate() {
                 
                 //Get inputs
@@ -81,6 +85,22 @@
                 console.log(lMap);
                 document.getElementById("result").innerHTML = lGrild;
                 document.getElementById("emojiResult").innerHTML = lMap.toEmojiString();
+                
+                //CopyButtons
+                for (let i = copyButtons.length - 1; i >= 0; i--)
+                {
+                    copyButtons[i].dispose();
+                }
+                copyButtons = [];
+                
+                {
+                    let lLoopCount = lGrild.length / 2000;
+                    for (let i = 1; i <= lLoopCount; i++)
+                    {
+                        copyButtons.push(new CopyButton(lGrild.substr((i - 1) * 2000, i < lLoopCount ? i * 2000 : lGrild.length % 2001), document.getElementById("copyButtons"), COPY + " " + i)); 
+                    }
+                }
+                //
                 
                 var lWarningElement = document.getElementById("warning");
                 lWarningElement.innerHTML = "";
