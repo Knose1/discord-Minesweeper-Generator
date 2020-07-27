@@ -1,8 +1,8 @@
 const TILES = ["||:white_large_square:||","||:one:||","||:two:||","||:three:||","||:four:||","||:five:||","||:six:||","||:seven:||","||:eight:||"];
-const TILES_EMOJI = ["⬜","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣"];
+const TILES_EMOJI = ["\u2b1c","\u0031\ufe0f\u20e3","\u0032\ufe0f\u20e3","\u0033\ufe0f\u20e3","\u0034\ufe0f\u20e3","\u0035\ufe0f\u20e3","\u0036\ufe0f\u20e3","\u0037\ufe0f\u20e3","\u0038\ufe0f\u20e3"];
 
 const BOMB = "||:bomb:||";
-const BOMB_EMOJI = "💣";
+const BOMB_EMOJI = "\ud83d\udca3";
 
 const BLOCK_BY_LINE = 8;
 
