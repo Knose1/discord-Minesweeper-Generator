@@ -97,7 +97,7 @@
                     for (i = 0, maxLoop = 0; i < lGrild.length && maxLoop <= 1000; maxLoop++)
                     {
                         let lMin = i;
-                        let lMax = i + 2000;
+                        let lMax = i + 1000;
                         if (lMax > lGrild.length) lMax = lGrild.length
                         else lMax = lMin + lGrild.substring(lMin, lMax).lastIndexOf(Map.LINE_ENDING);
                             
@@ -111,7 +111,7 @@
                 
                 var lWarningElement = document.getElementById("warning");
                 lWarningElement.innerHTML = "";
-                if (lGrild.length >= 2000)  lWarningElement.innerHTML = "<h2> WARNING: max character limit has been reached</h2>";
+                if (lGrild.length >= 1000)  lWarningElement.innerHTML = "<h2> WARNING: max character limit has been reached</h2>";
                 
                 if (lInputBomb.value !== '') lInputBomb.value = Math.clamp(lInputBomb.value, 0, 100);
                 
